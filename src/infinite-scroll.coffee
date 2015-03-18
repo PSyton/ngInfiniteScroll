@@ -60,7 +60,8 @@ mod.directive 'infiniteScroll', ['$rootScope', '$window', '$interval', 'THROTTLE
         elementBottom = height((elem[0].ownerDocument || elem[0].document).documentElement)
 
       remaining = elementBottom - containerBottom
-      shouldScroll = remaining <= height(container) * scrollDistance + 1
+      containerHeight = height(container)
+      shouldScroll = (containerHeight > 0) && (remaining <= containerHeight * scrollDistance + 1)
 
       if shouldScroll
         checkWhenEnabled = true
